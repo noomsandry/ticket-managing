@@ -17,6 +17,9 @@ export const initialTicketState: TicketState = adapter.getInitialState({});
 
 export const ticketReducer = createReducer(
   initialTicketState,
+  on(TicketActions.ticketsLoaded, (state, { tickets }) =>
+    adapter.setAll(tickets, { ...state })
+  ),
   on(TicketActions.createTicket, (state, { ticket }) =>
     adapter.addOne(ticket, { ...state })
   ),

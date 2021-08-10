@@ -1,0 +1,17 @@
+footer {
+  position: fixed;
+  height: 60px;
+  background-color: #333333;
+  bottom: 0;
+  width: 60%;
+}
+
+.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 40px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
