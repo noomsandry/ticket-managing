@@ -8,11 +8,11 @@ import { TicketActions } from "@pages/ticket/actions";
 export class TicketEffects {
   load$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(TicketActions.loadTasks),
+      ofType(TicketActions.loadTickets),
       mergeMap(() =>
         this.backendService.tickets().pipe(
           map((items) => {
-            return TicketActions.tasksLoaded({
+            return TicketActions.ticketsLoaded({
               tickets: items,
             });
           })

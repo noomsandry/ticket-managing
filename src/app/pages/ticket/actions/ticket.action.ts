@@ -3,9 +3,9 @@ import { Ticket } from "@shared/interfaces/ticket.interface";
 
 const source = "[Ticket Page]";
 
-export const loadTasks = createAction(`[${source}] Load`);
+export const loadTickets = createAction(`[${source}] Load`);
 
-export const tasksLoaded = createAction(
+export const ticketsLoaded = createAction(
   `[${source}] Loaded`,
   props<{ tickets: Ticket[] }>()
 );
