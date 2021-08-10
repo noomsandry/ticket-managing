@@ -19,6 +19,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     EffectsModule.forRoot([TicketEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
+      logOnly: false,
     }),
   ],
 })

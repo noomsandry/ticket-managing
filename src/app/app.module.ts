@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { RouterModule } from "@angular/router";
 
 import { LayoutsModule } from "@layouts/layouts.module";
 import { AppComponent } from "./app.component";
@@ -9,7 +9,7 @@ import { AppRoutingModule } from "./app-routing.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutsModule],
+  imports: [BrowserModule, AppRoutingModule, LayoutsModule, RouterModule],
   providers: [BackendService],
   bootstrap: [AppComponent],
 })
