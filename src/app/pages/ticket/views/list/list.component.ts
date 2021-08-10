@@ -3,9 +3,8 @@ import { Observable } from "rxjs";
 
 import { Ticket } from "@shared/interfaces/ticket.interface";
 import { User } from "@shared/interfaces/user.interface";
-import { BackendService } from "@shared/services/backend.service";
 import { Store } from "@ngrx/store";
-import { TicketActions } from "@pages/ticket/actions";
+import { TicketSelectors } from "@pages/ticket/selectors";
 
 @Component({
   selector: "app-list",
@@ -13,10 +12,12 @@ import { TicketActions } from "@pages/ticket/actions";
   styleUrls: ["./list.component.css"],
 })
 export class ListComponent implements OnInit {
-  public readonly users$: Observable<User[]>;
-  public readonly tickets$: Observable<Ticket[]>;
+  public users$: Observable<User[]>;
+  public tickets$: Observable<Ticket[]>;
 
   constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tickets$ = this.store.select(TicketSelectors.selectTickets);
+  }
 }
