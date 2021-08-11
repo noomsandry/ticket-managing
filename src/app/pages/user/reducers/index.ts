@@ -1,2 +1,2 @@
-import * as ticketReducer from "./ticket.reducer";
-export { ticketReducer };
+import * as userReducer from "./user.reducer";
+export { userReducer };

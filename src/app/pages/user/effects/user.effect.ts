@@ -5,7 +5,7 @@ import { map, mergeMap } from "rxjs/operators";
 import { BackendService } from "@shared/services/backend.service";
 import { UserActions } from "@pages/user/actions";
 @Injectable()
-export class TicketEffects {
+export class UserEffects {
   load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loadUsers),

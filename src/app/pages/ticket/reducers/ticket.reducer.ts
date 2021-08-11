@@ -20,7 +20,7 @@ export const ticketReducer = createReducer(
   on(TicketActions.ticketsLoaded, (state, { tickets }) =>
     adapter.setAll(tickets, { ...state })
   ),
-  on(TicketActions.createTicket, (state, { ticket }) =>
+  on(TicketActions.ticketCreated, (state, { ticket }) =>
     adapter.addOne(ticket, { ...state })
   ),
   on(TicketActions.ticketComplated, (state, { ticket }) =>

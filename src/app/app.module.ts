@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { EffectsModule } from "@ngrx/effects";
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { LayoutsModule } from "@layouts/layouts.module";
 import { AppComponent } from "./app.component";
@@ -14,6 +15,8 @@ import { AppEffects } from "./app.effect";
 import { StoreModule } from "@ngrx/store";
 import * as AppReducer from "./app.reducer";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { UserModule } from "./pages/user/user.module";
+import { TicketModule } from "./pages/ticket/ticket.module";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,6 +26,9 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     RouterModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatDialogModule,
+    UserModule,
+    TicketModule,
     StoreModule.forRoot(AppReducer.reducers, {
       metaReducers: AppReducer.metaReducers,
     }),

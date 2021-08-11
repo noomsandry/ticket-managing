@@ -1,9 +1,27 @@
 <form [formGroup]="form">
-  <h1>{{ title }}</h1>
-  <mat-form-field appearance="fill" fxLayout="row wrap" fxFill>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h1>{{ title }}</h1>
+    <mat-slide-toggle
+      *ngIf="ticket?.id"
+      class="example-margin"
+      color="primary"
+      (change)="completedChange($event)"
+      [checked]="form.controls.completed.value"
+    >
+      Done
+    </mat-slide-toggle>
+  </div>
+  <mat-form-field
+    appearance="fill"
+    fxLayout="row wrap"
+    fxFill
+    *ngIf="ticket?.id"
+  >
     <mat-label>Responsable</mat-label>
-    <mat-select>
-      <mat-option value="option">Option</mat-option>
+    <mat-select (selectionChange)="assignChange($event)">
+      <mat-option [value]="user.id" *ngFor="let user of users$ | async">{{
+        user.name
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill" fxLayout="row wrap" fxFill>

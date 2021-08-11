@@ -30,7 +30,11 @@ export class BackendService {
     },
   ];
 
-  public storedUsers: User[] = [{ id: 111, name: "Victor" }];
+  public storedUsers: User[] = [
+    { id: 111, name: "Victor" },
+    { id: 112, name: "Marc" },
+    { id: 113, name: "Laurent" },
+  ];
 
   private lastId: number = 1;
 
@@ -65,7 +69,7 @@ export class BackendService {
 
     return of(newTicket).pipe(
       delay(randomDelay()),
-      tap((ticket: Ticket) => this.storedTickets.push(ticket))
+      tap((ticket) => this.storedTickets.push(ticket))
     );
   }
 

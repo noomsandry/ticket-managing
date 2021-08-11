@@ -1,2 +1,2 @@
-import * as TicketSelectors from "./ticket.selector";
-export { TicketSelectors };
+import * as UserSelectors from "./user.selector";
+export { UserSelectors };

@@ -7,6 +7,14 @@ export const requestError = createAction(
   props<{ errorMessage: string }>()
 );
 
-export const displayMessageError = createAction(
-  `[${source}] display message error`
+export const displaySuccessMessage = createAction(
+  `[${source}] display success message`,
+  props<{ message: string }>()
 );
+
+export const startLoading = createAction(
+  `[${source}] start loading`,
+  props<{ message: string }>()
+);
+
+export const stopLoading = createAction(`[${source}] stop loading`);

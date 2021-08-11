@@ -26,3 +26,7 @@ body {
 .snackbar-error {
   background: #f44336 !important;
 }
+
+.snackbar-success {
+  background: #3f51b5 !important;
+}
