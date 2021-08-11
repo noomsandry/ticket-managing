@@ -1,1 +1,12 @@
-<app-ticket-form title="Modifier le ticket #1"></app-ticket-form>
+<ng-container
+  *ngIf="{
+    ticket: ticket$ | async
+  } as _"
+>
+  <app-ticket-form
+    [title]="title"
+    [ticket]="_.ticket"
+    [editable]="false"
+    *ngIf="_.ticket"
+  ></app-ticket-form
+></ng-container>

@@ -12,3 +12,8 @@ export const selectUnCompletedTickets = createSelector(
   selectTickets,
   (tickets) => tickets.filter((ticket) => !ticket.completed)
 );
+
+export const selectById = (id: number) =>
+  createSelector(selectTickets, (tickets) =>
+    tickets.find((ticket) => ticket.id === id)
+  );

@@ -28,7 +28,9 @@ export class TicketFormComponent implements OnInit, OnDestroy {
   @Input() ticket: Ticket = <Ticket>{
     completed: false,
   };
+  @Input() editable = true;
   @Output() onSubmit = new EventEmitter();
+
   form: FormGroup;
   users$: Observable<User[]>;
   private _unsubscribeAll: Subject<any>;
@@ -47,18 +49,6 @@ export class TicketFormComponent implements OnInit, OnDestroy {
       completed: [this.ticket?.completed],
       assigneeId: [this.ticket?.assigneeId],
       description: [this.ticket?.description],
-    });
-  }
-
-  completedChange({ checked }) {
-    this.form.patchValue({
-      completed: checked,
-    });
-  }
-
-  assignChange({ value }) {
-    this.form.patchValue({
-      assigneeId: value,
     });
   }
 

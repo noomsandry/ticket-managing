@@ -17,14 +17,14 @@ function randomDelay() {
 export class BackendService {
   public storedTickets: Ticket[] = [
     {
-      id: 0,
+      id: 1,
       completed: false,
       assigneeId: 111,
       description: "Install a monitor arm",
     },
     {
-      id: 1,
-      completed: false,
+      id: 2,
+      completed: true,
       assigneeId: 111,
       description: "Move the desk to the new location",
     },
