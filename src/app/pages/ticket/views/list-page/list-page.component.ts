@@ -46,6 +46,10 @@ export class ListPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  onClickTicket(id) {
+    this.router.navigate(["/details", id]);
+  }
+
   ngOnDestroy(): void {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();

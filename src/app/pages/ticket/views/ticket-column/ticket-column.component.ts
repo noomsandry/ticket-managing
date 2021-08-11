@@ -12,7 +12,7 @@ export class TicketColumnComponent implements OnInit {
   @Input() tickets: Ticket[] = [];
   @Output() onDropTicket = new EventEmitter();
   @Output() onCreateTicket = new EventEmitter();
-
+  @Output() onClickTicket = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
@@ -40,5 +40,9 @@ export class TicketColumnComponent implements OnInit {
 
   create() {
     this.onCreateTicket.emit(this.title);
+  }
+
+  click(id) {
+    this.onClickTicket.emit(id);
   }
 }

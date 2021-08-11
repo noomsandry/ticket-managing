@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, mergeMap, withLatestFrom } from "rxjs/operators";
+import { catchError, map, mergeMap } from "rxjs/operators";
+import { of } from "rxjs";
 
 import { BackendService } from "@shared/services/backend.service";
 import { TicketActions } from "@pages/ticket/actions";
-import { of } from "rxjs";
+import * as AppActions from "@app/app.action";
+
 @Injectable()
 export class TicketEffects {
   load$ = createEffect(() =>
@@ -16,6 +18,9 @@ export class TicketEffects {
             return TicketActions.ticketsLoaded({
               tickets: items,
             });
+          }),
+          catchError((errorMessage) => {
+            return of(AppActions.requestError({ errorMessage }));
           })
         )
       )
@@ -31,6 +36,9 @@ export class TicketEffects {
             return TicketActions.ticketCreated({
               ticket: item,
             });
+          }),
+          catchError((errorMessage) => {
+            return of(AppActions.requestError({ errorMessage }));
           })
         )
       )
@@ -49,7 +57,7 @@ export class TicketEffects {
             });
           }),
           catchError((errorMessage) => {
-            return of(TicketActions.requestError({ errorMessage }));
+            return of(AppActions.requestError({ errorMessage }));
           })
         )
       )

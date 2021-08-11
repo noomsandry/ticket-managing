@@ -16,6 +16,7 @@
       "dom"
     ],
     "paths": {
+      "@app/*": ["app/*"],
       "@pages/*": ["app/pages/*"],
       "@layouts/*": ["app/layouts/*"],
       "@shared/*": ["app/shared/*"],

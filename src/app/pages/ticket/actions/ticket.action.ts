@@ -39,12 +39,3 @@ export const ticketDeleted = createAction(
   `[${source}] Deleted`,
   props<{ id: number }>()
 );
-
-export const requestError = createAction(
-  `[${source}] Request error`,
-  props<{ errorMessage: string }>()
-);
-
-export const displayMessageError = createAction(
-  `[${source}] display message error`
-);

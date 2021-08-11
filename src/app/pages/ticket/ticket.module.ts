@@ -12,7 +12,6 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 /* import angular material */
 import { DragDropModule } from "@angular/cdk/drag-drop";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -26,7 +25,6 @@ import { TicketEffects } from "./effects/ticket.effect";
 import { TicketResolver } from "./ticket.resolver";
 import { TicketCardComponent } from "./views/ticket-card/ticket-card.component";
 import { TicketColumnComponent } from "./views/ticket-column/ticket-column.component";
-import { TicketUiEffects } from "./effects/ticket-ui.effect";
 import { TicketFormComponent } from "./views/ticket-form/ticket-form.component";
 import { ListPageComponent } from "./views/list-page/list-page.component";
 import { DetailsPageComponent } from "./views/details-page/details-page.component";
@@ -47,19 +45,14 @@ import { CreatePageComponent } from "./views/create-page/create-page.component";
     ReactiveFormsModule,
     FlexLayoutModule,
     DragDropModule,
-    MatSnackBarModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     RouterModule,
-    StoreModule.forRoot({ ticket: ticketReducer.reducer }),
-    EffectsModule.forRoot([TicketEffects, TicketUiEffects]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: false,
-    }),
+    StoreModule.forFeature("ticket", ticketReducer.reducer),
+    EffectsModule.forFeature([TicketEffects]),
   ],
   providers: [TicketResolver],
 })

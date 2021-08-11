@@ -4,10 +4,12 @@
     title="TO-DO"
     [tickets]="uncomplated$ | async"
     (onDropTicket)="onDropTicket($event)"
+    (onClickTicket)="onClickTicket($event)"
   ></app-ticket-column>
   <app-ticket-column
     title="DONE"
     [tickets]="complated$ | async"
     (onDropTicket)="onDropTicket($event)"
+    (onClickTicket)="onClickTicket($event)"
   ></app-ticket-column>
 </div>
