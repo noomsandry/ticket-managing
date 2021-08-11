@@ -1,1 +1,22 @@
-<p>ticket-form works!</p>
+<form [formGroup]="form">
+  <h1>{{ title }}</h1>
+  <mat-form-field appearance="fill" fxLayout="row wrap" fxFill>
+    <mat-label>Responsable</mat-label>
+    <mat-select>
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" fxLayout="row wrap" fxFill>
+    <mat-label>Description</mat-label>
+    <textarea formControlName="description" matInput></textarea>
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+    <button mat-raised-button type="button">Annuler</button>
+    <!--  <button mat-raised-button color="accent" (click)="editForm()">
+      Modifier
+    </button> -->
+    <button mat-raised-button type="submit" color="primary" (click)="submit()">
+      Créer
+    </button>
+  </div>
+</form>
