@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 
 import { LayoutsModule } from "@layouts/layouts.module";
 import { AppComponent } from "./app.component";
-import { BackendService } from "./shared/services/backend.service";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -17,7 +16,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     RouterModule,
     BrowserAnimationsModule,
   ],
-  providers: [BackendService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

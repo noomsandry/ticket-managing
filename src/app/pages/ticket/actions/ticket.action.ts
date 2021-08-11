@@ -20,13 +20,13 @@ export const ticketCreated = createAction(
   props<{ ticket: Ticket }>()
 );
 
-export const updateTicket = createAction(
-  `[${source}] Update`,
-  props<{ ticket: Ticket }>()
+export const completeTicket = createAction(
+  `[${source}] Complet`,
+  props<{ ticketId: number; completed: boolean }>()
 );
 
-export const ticketUpdated = createAction(
-  `[${source}] Updated`,
+export const ticketComplated = createAction(
+  `[${source}] Completed`,
   props<{ ticket: Ticket }>()
 );
 
@@ -38,4 +38,13 @@ export const deleteTicket = createAction(
 export const ticketDeleted = createAction(
   `[${source}] Deleted`,
   props<{ id: number }>()
+);
+
+export const requestError = createAction(
+  `[${source}] Request error`,
+  props<{ errorMessage: string }>()
+);
+
+export const displayMessageError = createAction(
+  `[${source}] display message error`
 );

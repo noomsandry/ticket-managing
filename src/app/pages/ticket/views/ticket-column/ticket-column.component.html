@@ -1,0 +1,15 @@
+<div
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListData]="{
+    tickets: tickets,
+    title: title
+  }"
+>
+  <h3>{{ title }}</h3>
+  <app-ticket-card
+    [ticket]="ticket"
+    *ngFor="let ticket of tickets"
+    cdkDrag
+  ></app-ticket-card>
+</div>

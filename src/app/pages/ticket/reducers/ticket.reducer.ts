@@ -23,11 +23,13 @@ export const ticketReducer = createReducer(
   on(TicketActions.createTicket, (state, { ticket }) =>
     adapter.addOne(ticket, { ...state })
   ),
-  on(TicketActions.updateTicket, (state, { ticket }) =>
+  on(TicketActions.ticketComplated, (state, { ticket }) =>
     adapter.updateOne(
       {
         id: ticket.id,
-        changes: ticket,
+        changes: {
+          completed: ticket.completed,
+        },
       },
       { ...state }
     )

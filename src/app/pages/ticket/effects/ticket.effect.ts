@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, mergeMap, withLatestFrom } from "rxjs/operators";
+import { catchError, map, mergeMap, withLatestFrom } from "rxjs/operators";
 
 import { BackendService } from "@shared/services/backend.service";
 import { TicketActions } from "@pages/ticket/actions";
+import { of } from "rxjs";
 @Injectable()
 export class TicketEffects {
   load$ = createEffect(() =>
@@ -36,8 +37,27 @@ export class TicketEffects {
     )
   );
 
+  update$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketActions.completeTicket),
+      mergeMap(({ ticketId, completed }) =>
+        this.backendService.complete(ticketId, completed).pipe(
+          map((item) => {
+            item.completed = completed;
+            return TicketActions.ticketComplated({
+              ticket: item,
+            });
+          }),
+          catchError((errorMessage) => {
+            return of(TicketActions.requestError({ errorMessage }));
+          })
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
-    private backendService: BackendService
+    private readonly backendService: BackendService
   ) {}
 }
