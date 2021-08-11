@@ -1,13 +1,16 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+
 import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 import { Ticket } from "@shared/interfaces/ticket.interface";
 import { User } from "@shared/interfaces/user.interface";
 import { select, Store } from "@ngrx/store";
 import { TicketSelectors } from "@pages/ticket/selectors";
-import { takeUntil } from "rxjs/operators";
 import { TicketActions } from "@pages/ticket/actions";
-import { Router } from "@angular/router";
+
+import * as AppActions from "@app/app.action";
 @Component({
   selector: "app-list-page",
   templateUrl: "./list-page.component.html",
@@ -48,6 +51,13 @@ export class ListPageComponent implements OnInit, OnDestroy {
 
   onClickTicket(id) {
     this.router.navigate(["/details", id]);
+  }
+
+  onDeleteTicket(id) {
+    this.store.dispatch(TicketActions.deleteTicket({ id }));
+    this.store.dispatch(
+      AppActions.startLoading({ message: "Suppression en cours ..." })
+    );
   }
 
   ngOnDestroy(): void {

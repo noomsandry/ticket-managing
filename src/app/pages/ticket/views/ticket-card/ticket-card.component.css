@@ -7,10 +7,17 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: move;
   background: white;
   font-size: 14px;
   margin-top: 15px;
   border-radius: 5px;
   box-shadow: 1px 2px 6px -2px;
+  position: relative;
+}
+
+button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -28,7 +28,6 @@ export class TicketFormComponent implements OnInit, OnDestroy {
   @Input() ticket: Ticket = <Ticket>{
     completed: false,
   };
-  @Input() editable = true;
   @Output() onSubmit = new EventEmitter();
 
   form: FormGroup;

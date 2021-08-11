@@ -7,6 +7,7 @@ import { BackendService } from "@shared/services/backend.service";
 import { TicketActions } from "@pages/ticket/actions";
 import * as AppActions from "@app/app.action";
 import { Store } from "@ngrx/store";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class TicketEffects {
@@ -40,6 +41,7 @@ export class TicketEffects {
             this.store.dispatch(
               AppActions.displaySuccessMessage({ message: "Ticket crée" })
             );
+            this.router.navigate(["/"]);
             return TicketActions.ticketCreated({
               ticket: item,
             });
@@ -66,8 +68,28 @@ export class TicketEffects {
             });
           }),
           catchError((errorMessage) => {
+            console.log(errorMessage);
             return of(AppActions.requestError({ errorMessage }));
           })
+        )
+      )
+    )
+  );
+
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketActions.deleteTicket),
+      mergeMap(({ id }) =>
+        this.backendService.delete(id).pipe(
+          map((item) => {
+            return TicketActions.ticketDeleted({
+              id,
+            });
+          }),
+          catchError((errorMessage) => {
+            return of(AppActions.requestError({ errorMessage }));
+          }),
+          finalize(() => this.store.dispatch(AppActions.stopLoading()))
         )
       )
     )
@@ -75,6 +97,7 @@ export class TicketEffects {
   constructor(
     private store: Store,
     private actions$: Actions,
-    private readonly backendService: BackendService
+    private readonly backendService: BackendService,
+    private router: Router
   ) {}
 }

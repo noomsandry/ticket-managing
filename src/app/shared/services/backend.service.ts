@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of, throwError } from "rxjs";
-import { delay, tap } from "rxjs/operators";
+import { delay, tap, map } from "rxjs/operators";
 import { Ticket } from "../interfaces/ticket.interface";
 import { User } from "../interfaces/user.interface";
 
@@ -36,7 +36,7 @@ export class BackendService {
     { id: 113, name: "Laurent" },
   ];
 
-  private lastId: number = 1;
+  private lastId: number = 2;
 
   private findUserById = (id) =>
     this.storedUsers.find((user: User) => user.id === +id);
@@ -69,8 +69,27 @@ export class BackendService {
 
     return of(newTicket).pipe(
       delay(randomDelay()),
-      tap((ticket) => this.storedTickets.push(ticket))
+      tap((ticket: Ticket) => {
+        const t = [...this.storedTickets];
+        t.push(ticket);
+        this.storedTickets = t;
+      })
     );
+  }
+
+  public delete(ticketId: number): Observable<Ticket> {
+    const foundTicket = this.findTicketById(+ticketId);
+    if (foundTicket) {
+      return of(foundTicket).pipe(
+        delay(randomDelay()),
+        tap(({ id }) => {
+          this.storedTickets = this.storedTickets.filter(
+            (ticket) => ticket.id !== id
+          );
+        })
+      );
+    }
+    return throwError(new Error("ticket not found"));
   }
 
   public assign(ticketId: number, userId: number): Observable<Ticket> {
@@ -94,8 +113,11 @@ export class BackendService {
     if (foundTicket) {
       return of(foundTicket).pipe(
         delay(randomDelay()),
-        tap((ticket: Ticket) => {
-          ticket.completed = true;
+        map((ticket: Ticket) => {
+          return {
+            ...ticket,
+            completed: true,
+          };
         })
       );
     }

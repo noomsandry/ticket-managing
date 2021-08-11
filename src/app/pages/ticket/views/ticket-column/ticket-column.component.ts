@@ -13,6 +13,8 @@ export class TicketColumnComponent implements OnInit {
   @Output() onDropTicket = new EventEmitter();
   @Output() onCreateTicket = new EventEmitter();
   @Output() onClickTicket = new EventEmitter();
+  @Output() onDeleteTicket = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -31,11 +33,11 @@ export class TicketColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      this.onDropTicket.emit({
+        ticket: event.container.data.tickets[event.currentIndex],
+        column: event.container.data.title,
+      });
     }
-    this.onDropTicket.emit({
-      ticket: event.container.data.tickets[event.currentIndex],
-      column: event.container.data.title,
-    });
   }
 
   create() {
@@ -44,5 +46,9 @@ export class TicketColumnComponent implements OnInit {
 
   click(id) {
     this.onClickTicket.emit(id);
+  }
+
+  deleteTicket(id) {
+    this.onDeleteTicket.emit(id);
   }
 }

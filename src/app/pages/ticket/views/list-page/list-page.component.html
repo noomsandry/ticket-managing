@@ -5,11 +5,13 @@
     [tickets]="uncomplated$ | async"
     (onDropTicket)="onDropTicket($event)"
     (onClickTicket)="onClickTicket($event)"
+    (onDeleteTicket)="onDeleteTicket($event)"
   ></app-ticket-column>
   <app-ticket-column
     title="DONE"
     [tickets]="complated$ | async"
     (onDropTicket)="onDropTicket($event)"
     (onClickTicket)="onClickTicket($event)"
+    (onDeleteTicket)="onDeleteTicket($event)"
   ></app-ticket-column>
 </div>

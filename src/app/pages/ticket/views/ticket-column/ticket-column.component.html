@@ -15,6 +15,7 @@
       aria-label="Create new ticket"
       (click)="create()"
       [routerLink]="['create']"
+      *ngIf="title === 'TO-DO'"
     >
       Créer un ticket
     </a>
@@ -22,6 +23,7 @@
   <app-ticket-card
     [ticket]="ticket"
     (click)="click(ticket.id)"
+    (onDelete)="deleteTicket(ticket.id)"
     *ngFor="let ticket of tickets"
     cdkDrag
   ></app-ticket-card>

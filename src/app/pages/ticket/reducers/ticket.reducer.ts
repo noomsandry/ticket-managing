@@ -34,7 +34,7 @@ export const ticketReducer = createReducer(
       { ...state }
     )
   ),
-  on(TicketActions.deleteTicket, (state, { id }) =>
+  on(TicketActions.ticketDeleted, (state, { id }) =>
     adapter.removeOne(id, { ...state })
   )
 );
