@@ -7,22 +7,22 @@ import { select, Store } from "@ngrx/store";
 import { TicketSelectors } from "@pages/ticket/selectors";
 import { takeUntil } from "rxjs/operators";
 import { TicketActions } from "@pages/ticket/actions";
-import { tick } from "@angular/core/testing";
-
+import { Router } from "@angular/router";
 @Component({
-  selector: "app-list",
-  templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.css"],
+  selector: "app-list-page",
+  templateUrl: "./list-page.component.html",
+  styleUrls: ["./list-page.component.css"],
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListPageComponent implements OnInit, OnDestroy {
   public users$: Observable<User[]>;
   public complated$: Observable<Ticket[]>;
   public uncomplated$: Observable<Ticket[]>;
   public readonly todo = "TO-DO";
   public readonly done = "DONE";
+
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -37,7 +37,7 @@ export class ListComponent implements OnInit, OnDestroy {
     );
   }
 
-  onTicketDrop({ ticket, column }) {
+  onDropTicket({ ticket, column }) {
     this.store.dispatch(
       TicketActions.completeTicket({
         ticketId: ticket.id,

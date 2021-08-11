@@ -10,7 +10,8 @@ import { Ticket } from "@shared/interfaces/ticket.interface";
 export class TicketColumnComponent implements OnInit {
   @Input() title = "";
   @Input() tickets: Ticket[] = [];
-  @Output() onTicketDrop = new EventEmitter();
+  @Output() onDropTicket = new EventEmitter();
+  @Output() onCreateTicket = new EventEmitter();
 
   constructor() {}
 
@@ -31,9 +32,13 @@ export class TicketColumnComponent implements OnInit {
         event.currentIndex
       );
     }
-    this.onTicketDrop.emit({
+    this.onDropTicket.emit({
       ticket: event.container.data.tickets[event.currentIndex],
       column: event.container.data.title,
     });
+  }
+
+  create() {
+    this.onCreateTicket.emit(this.title);
   }
 }

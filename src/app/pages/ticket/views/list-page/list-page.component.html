@@ -3,11 +3,11 @@
   <app-ticket-column
     title="TO-DO"
     [tickets]="uncomplated$ | async"
-    (onTicketDrop)="onTicketDrop($event)"
+    (onDropTicket)="onDropTicket($event)"
   ></app-ticket-column>
   <app-ticket-column
     title="DONE"
     [tickets]="complated$ | async"
-    (onTicketDrop)="onTicketDrop($event)"
+    (onDropTicket)="onDropTicket($event)"
   ></app-ticket-column>
 </div>

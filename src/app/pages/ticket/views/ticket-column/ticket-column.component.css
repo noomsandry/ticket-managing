@@ -6,11 +6,19 @@
   vertical-align: top;
 }
 
-div {
+.column {
   border: solid 1px #ccc;
   min-height: 60px;
   background: white;
   border-radius: 4px;
   overflow: hidden;
   display: block;
+  padding: 10px 20px;
+  background: #d8d8d8;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

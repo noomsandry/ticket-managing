@@ -1,4 +1,5 @@
 <div
+  class="column"
   cdkDropList
   (cdkDropListDropped)="drop($event)"
   [cdkDropListData]="{
@@ -6,7 +7,18 @@
     title: title
   }"
 >
-  <h3>{{ title }}</h3>
+  <div class="column-header">
+    <h3>{{ title }}</h3>
+    <a
+      mat-raised-button
+      color="primary"
+      aria-label="Create new ticket"
+      (click)="create()"
+      [routerLink]="['create']"
+    >
+      Créer un ticket
+    </a>
+  </div>
   <app-ticket-card
     [ticket]="ticket"
     *ngFor="let ticket of tickets"
