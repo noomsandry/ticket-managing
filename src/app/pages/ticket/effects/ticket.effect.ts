@@ -35,11 +35,11 @@ export class TicketEffects {
   create$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TicketActions.createTicket),
-      mergeMap(({ description }) => {
+      mergeMap(({ description, assigneeId }) => {
         this.store.dispatch(
           AppActions.startLoading({ message: "Enregistrement en cours ..." })
         );
-        return this.backendService.newTicket({ description }).pipe(
+        return this.backendService.newTicket({ description, assigneeId }).pipe(
           map((item) => {
             this.store.dispatch(
               AppActions.displaySuccessMessage({ message: "Ticket crée" })

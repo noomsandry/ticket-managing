@@ -12,10 +12,11 @@ export class CreatePageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  create({ description }) {
+  create({ description, assigneeId }) {
     this.store.dispatch(
       TicketActions.createTicket({
         description,
+        assigneeId,
       })
     );
   }

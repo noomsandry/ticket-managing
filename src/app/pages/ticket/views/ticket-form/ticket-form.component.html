@@ -11,12 +11,7 @@
       Done
     </mat-slide-toggle>
   </div>
-  <mat-form-field
-    appearance="fill"
-    fxLayout="row wrap"
-    fxFill
-    *ngIf="ticket?.id"
-  >
+  <mat-form-field appearance="fill" fxLayout="row wrap" fxFill>
     <mat-label>Responsable</mat-label>
     <mat-select formControlName="assigneeId">
       <mat-option [value]="user.id" *ngFor="let user of users$ | async">{{

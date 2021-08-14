@@ -12,7 +12,7 @@ export const ticketsLoaded = createAction(
 
 export const createTicket = createAction(
   `[${source}] Create`,
-  props<{ description: string }>()
+  props<{ description: string; assigneeId: number }>()
 );
 
 export const ticketCreated = createAction(
