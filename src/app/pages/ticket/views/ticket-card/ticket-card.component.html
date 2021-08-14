@@ -2,8 +2,9 @@
   <button mat-icon-button (click)="remove($event)">
     <mat-icon>delete</mat-icon>
   </button>
-  <div class="card-info">
-    <span class="label">Responsable</span> : {{ ticket.assigneed?.name }}
+  <div class="card-info" *ngIf="ticket.assigneed">
+    <span class="label">Responsable</span> :
+    <span class="badge" matRipple>{{ ticket.assigneed?.name }}</span>
   </div>
   <div class="card-info">
     <span class="label">Description : </span>

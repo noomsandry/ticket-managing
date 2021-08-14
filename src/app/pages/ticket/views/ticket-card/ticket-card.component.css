@@ -26,3 +26,11 @@ button {
   top: 0;
   right: 0;
 }
+
+.badge {
+  background: #d8d8d8;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,8 @@
+.filter > * {
+  padding: 0 5px;
+}
+
+:host {
+  margin-top: 25px;
+  display: block;
+}

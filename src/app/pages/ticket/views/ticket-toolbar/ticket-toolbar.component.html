@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h2>Vos Tickets</h2>
+  <form
+    class="filter"
+    [formGroup]="form"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <span>Filtre</span>
+    <mat-form-field appearance="fill">
+      <mat-label>Responsable</mat-label>
+      <mat-select formControlName="assigneeId">
+        <mat-option [value]="user.id" *ngFor="let user of users$ | async">{{
+          user.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!--   <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="completed">
+        <mat-option [value]="false">TO-DO</mat-option>
+        <mat-option [value]="true">DONE</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <button mat-raised-button color="primary" (click)="reset()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </form>
+</div>

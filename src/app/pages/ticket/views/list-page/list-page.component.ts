@@ -7,17 +7,17 @@ import { takeUntil } from "rxjs/operators";
 import { Ticket } from "@shared/interfaces/ticket.interface";
 import { User } from "@shared/interfaces/user.interface";
 import { select, Store } from "@ngrx/store";
+
 import { TicketSelectors } from "@pages/ticket/selectors";
 import { TicketActions } from "@pages/ticket/actions";
-
 import * as AppActions from "@app/app.action";
+import { UserSelectors } from "@app/pages/user/selectors";
 @Component({
   selector: "app-list-page",
   templateUrl: "./list-page.component.html",
   styleUrls: ["./list-page.component.css"],
 })
 export class ListPageComponent implements OnInit, OnDestroy {
-  public users$: Observable<User[]>;
   public complated$: Observable<Ticket[]>;
   public uncomplated$: Observable<Ticket[]>;
   public readonly todo = "TO-DO";
