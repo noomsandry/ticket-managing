@@ -7,7 +7,7 @@ import {
   Output,
   ViewEncapsulation,
 } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
@@ -47,7 +47,7 @@ export class TicketFormComponent implements OnInit, OnDestroy {
       id: [this.ticket?.id],
       completed: [this.ticket?.completed],
       assigneeId: [this.ticket?.assigneeId],
-      description: [this.ticket?.description],
+      description: [this.ticket?.description, [Validators.required]],
     });
   }
 
