@@ -1,5 +1,5 @@
 :host {
-  width: 400px;
+  width: 45%;
   max-width: 100%;
   padding: 10px;
   display: inline-block;
@@ -21,4 +21,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.column-content {
+  display: block;
+  max-height: calc(100vh - 315px);
+  overflow-y: scroll;
 }

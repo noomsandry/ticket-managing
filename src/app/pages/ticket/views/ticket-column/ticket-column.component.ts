@@ -33,11 +33,13 @@ export class TicketColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      this.onDropTicket.emit({
-        ticket: event.container.data.tickets[event.currentIndex],
-        column: event.container.data.title,
-      });
     }
+
+    this.onDropTicket.emit({
+      ticket: event.container.data.tickets[event.currentIndex],
+      column: event.container.data.title,
+      currentIndex: event.currentIndex,
+    });
   }
 
   create() {

@@ -40,11 +40,12 @@ export class ListPageComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDropTicket({ ticket, column }) {
+  onDropTicket({ ticket, column, currentIndex }) {
     this.store.dispatch(
       TicketActions.completeTicket({
         ticketId: ticket.id,
         completed: column === this.done,
+        order: currentIndex,
       })
     );
   }
