@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { tick } from "@angular/core/testing";
 import { Observable, of, throwError } from "rxjs";
 import { delay, tap, map } from "rxjs/operators";
 import { Ticket } from "../interfaces/ticket.interface";
@@ -86,6 +87,23 @@ export class BackendService {
           this.storedTickets = this.storedTickets.filter(
             (ticket) => ticket.id !== id
           );
+        })
+      );
+    }
+    return throwError(new Error("ticket not found"));
+  }
+
+  public update(editTicket: Ticket): Observable<Ticket> {
+    const foundTicket = this.findTicketById(+editTicket.id);
+    if (foundTicket) {
+      return of(editTicket).pipe(
+        delay(randomDelay()),
+        tap(({ id }) => {
+          this.storedTickets = this.storedTickets.map((ticket) => {
+            if (ticket.id === editTicket.id) return editTicket;
+            return ticket;
+          });
+          return editTicket;
         })
       );
     }

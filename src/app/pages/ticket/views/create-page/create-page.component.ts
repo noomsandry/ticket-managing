@@ -18,8 +18,5 @@ export class CreatePageComponent implements OnInit {
         description,
       })
     );
-    this.store.dispatch(
-      AppActions.startLoading({ message: "Enregistrement en cours" })
-    );
   }
 }

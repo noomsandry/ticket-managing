@@ -7,6 +7,7 @@ import { select, Store } from "@ngrx/store";
 
 import { Ticket } from "@app/shared/interfaces/ticket.interface";
 import { TicketSelectors } from "../../selectors";
+import { TicketActions } from "../../actions";
 
 @Component({
   selector: "app-details-page",
@@ -39,6 +40,14 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  update(ticket) {
+    this.store.dispatch(
+      TicketActions.updateTicket({
+        ticket,
+      })
+    );
   }
 
   ngOnDestroy(): void {

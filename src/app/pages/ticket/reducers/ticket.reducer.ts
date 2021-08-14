@@ -36,6 +36,17 @@ export const ticketReducer = createReducer(
   ),
   on(TicketActions.ticketDeleted, (state, { id }) =>
     adapter.removeOne(id, { ...state })
+  ),
+  on(TicketActions.ticketUpdated, (state, { ticket }) =>
+    adapter.updateOne(
+      {
+        id: ticket.id,
+        changes: ticket,
+      },
+      {
+        ...state,
+      }
+    )
   )
 );
 

@@ -6,6 +6,7 @@
   <app-ticket-form
     [title]="title"
     [ticket]="_.ticket"
+    (onSubmit)="update($event)"
     *ngIf="_.ticket"
   ></app-ticket-form
 ></ng-container>

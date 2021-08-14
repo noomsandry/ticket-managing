@@ -39,3 +39,13 @@ export const ticketDeleted = createAction(
   `[${source}] Deleted`,
   props<{ id: number }>()
 );
+
+export const updateTicket = createAction(
+  `[${source}] Update`,
+  props<{ ticket: Ticket }>()
+);
+
+export const ticketUpdated = createAction(
+  `[${source}] Updated`,
+  props<{ ticket: Ticket }>()
+);

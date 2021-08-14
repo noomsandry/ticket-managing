@@ -35,8 +35,11 @@ export class TicketEffects {
   create$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TicketActions.createTicket),
-      mergeMap(({ description }) =>
-        this.backendService.newTicket({ description }).pipe(
+      mergeMap(({ description }) => {
+        this.store.dispatch(
+          AppActions.startLoading({ message: "Enregistrement en cours ..." })
+        );
+        return this.backendService.newTicket({ description }).pipe(
           map((item) => {
             this.store.dispatch(
               AppActions.displaySuccessMessage({ message: "Ticket crée" })
@@ -51,28 +54,35 @@ export class TicketEffects {
             return of(AppActions.requestError({ errorMessage }));
           }),
           finalize(() => this.store.dispatch(AppActions.stopLoading()))
-        )
-      )
+        );
+      })
     )
   );
 
   update$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(TicketActions.completeTicket),
-      mergeMap(({ ticketId, completed }) =>
-        this.backendService.complete(ticketId, completed).pipe(
+      ofType(TicketActions.updateTicket),
+      mergeMap(({ ticket }) => {
+        this.store.dispatch(
+          AppActions.startLoading({ message: "Mise à jour en cours ..." })
+        );
+        return this.backendService.update(ticket).pipe(
           map((item) => {
-            item.completed = completed;
-            return TicketActions.ticketComplated({
+            this.store.dispatch(
+              AppActions.displaySuccessMessage({ message: "Ticket à jour" })
+            );
+            this.router.navigate(["/"]);
+            return TicketActions.ticketUpdated({
               ticket: item,
             });
           }),
           catchError((errorMessage) => {
             console.log(errorMessage);
             return of(AppActions.requestError({ errorMessage }));
-          })
-        )
-      )
+          }),
+          finalize(() => this.store.dispatch(AppActions.stopLoading()))
+        );
+      })
     )
   );
 
@@ -94,6 +104,25 @@ export class TicketEffects {
       )
     )
   );
+
+  complet$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketActions.completeTicket),
+      mergeMap(({ ticketId, completed }) =>
+        this.backendService.complete(ticketId, completed).pipe(
+          map((item) => {
+            return TicketActions.ticketComplated({
+              ticket: item,
+            });
+          }),
+          catchError((errorMessage) => {
+            return of(AppActions.requestError({ errorMessage }));
+          })
+        )
+      )
+    )
+  );
+
   constructor(
     private store: Store,
     private actions$: Actions,
