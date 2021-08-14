@@ -22,7 +22,7 @@ export const ticketCreated = createAction(
 
 export const completeTicket = createAction(
   `[${source}] Complet`,
-  props<{ ticketId: number; completed: boolean }>()
+  props<{ ticketId: number; completed: boolean; order: number }>()
 );
 
 export const ticketComplated = createAction(

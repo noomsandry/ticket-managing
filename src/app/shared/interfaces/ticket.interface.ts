@@ -6,4 +6,5 @@ export interface Ticket {
   assigneeId: number;
   description: string;
   assigneed?: User;
+  order: number;
 }

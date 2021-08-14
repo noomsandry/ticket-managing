@@ -28,11 +28,19 @@ export const selectTicketEntries = createSelector(
 );
 export const selectCompletedTickets = createSelector(
   selectTicketEntries,
-  (tickets) => tickets.filter((ticket) => ticket.completed)
+  (tickets) =>
+    _.orderBy(
+      tickets.filter((ticket) => ticket.completed),
+      "order"
+    )
 );
 export const selectUnCompletedTickets = createSelector(
   selectTicketEntries,
-  (tickets) => tickets.filter((ticket) => !ticket.completed)
+  (tickets) =>
+    _.orderBy(
+      tickets.filter((ticket) => !ticket.completed),
+      "order"
+    )
 );
 
 export const selectById = (id: number) =>

@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { tick } from "@angular/core/testing";
 import { Observable, of, throwError } from "rxjs";
 import { delay, tap, map } from "rxjs/operators";
 import { Ticket } from "../interfaces/ticket.interface";
@@ -22,12 +21,14 @@ export class BackendService {
       completed: false,
       assigneeId: 111,
       description: "Install a monitor arm",
+      order: 0,
     },
     {
       id: 2,
       completed: true,
       assigneeId: 111,
       description: "Move the desk to the new location",
+      order: 0,
     },
   ];
 
@@ -69,6 +70,7 @@ export class BackendService {
       completed: false,
       assigneeId: payload.assigneeId,
       description: payload.description,
+      order: this.lastId,
     };
 
     return of(newTicket).pipe(
@@ -129,7 +131,11 @@ export class BackendService {
     return throwError(new Error("ticket or user not found"));
   }
 
-  public complete(ticketId: number, completed: boolean): Observable<Ticket> {
+  public complete(
+    ticketId: number,
+    completed: boolean,
+    order: number
+  ): Observable<Ticket> {
     const foundTicket = this.findTicketById(+ticketId);
     if (foundTicket) {
       return of(foundTicket).pipe(
@@ -137,7 +143,8 @@ export class BackendService {
         map((ticket: Ticket) => {
           return {
             ...ticket,
-            completed: true,
+            order,
+            completed,
           };
         })
       );
