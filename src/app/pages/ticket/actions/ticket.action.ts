@@ -49,3 +49,8 @@ export const ticketUpdated = createAction(
   `[${source}] Updated`,
   props<{ ticket: Ticket }>()
 );
+
+export const setTicketFilter = createAction(
+  `[${source}] set ticket filter`,
+  props<{ filter: any }>()
+);

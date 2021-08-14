@@ -29,7 +29,7 @@ import { TicketFormComponent } from "./views/ticket-form/ticket-form.component";
 import { ListPageComponent } from "./views/list-page/list-page.component";
 import { DetailsPageComponent } from "./views/details-page/details-page.component";
 import { CreatePageComponent } from "./views/create-page/create-page.component";
-import { UserModule } from "../user/user.module";
+import { TicketToolbarComponent } from "./views/ticket-toolbar/ticket-toolbar.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { UserModule } from "../user/user.module";
     ListPageComponent,
     DetailsPageComponent,
     CreatePageComponent,
+    TicketToolbarComponent,
   ],
   imports: [
     CommonModule,

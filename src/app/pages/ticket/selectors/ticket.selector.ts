@@ -8,16 +8,22 @@ export const getRouteState = createFeatureSelector<TicketState>("ticket");
 
 export const selectTickets = createSelector(getRouteState, selectAll);
 
+export const selectTicketFilter = createSelector(
+  getRouteState,
+  (state) => state.filter
+);
 export const selectTicketEntries = createSelector(
   selectTickets,
   selectUsers,
-  (tickets, users) => {
+  selectTicketFilter,
+  (tickets, users, filter) => {
     const userById = _.groupBy(users, "id");
-    return _.map(tickets, (ticket: Ticket) => {
+    const ticketEntries = _.map(tickets, (ticket: Ticket) => {
       const _ticket = { ...ticket };
       _ticket.assigneed = _.get(userById, [ticket.assigneeId, 0]);
       return _ticket;
     });
+    return _.filter(ticketEntries, filter);
   }
 );
 export const selectCompletedTickets = createSelector(

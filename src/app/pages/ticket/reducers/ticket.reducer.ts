@@ -7,13 +7,17 @@ export const adapter: EntityAdapter<Ticket> = createEntityAdapter<Ticket>({
   selectId: (entry) => entry.id,
 });
 
-export interface TicketState extends EntityState<Ticket> {}
+export interface TicketState extends EntityState<Ticket> {
+  filter: any;
+}
 
 export function reducer(state: TicketState | undefined, action: Action) {
   return ticketReducer(state, action);
 }
 
-export const initialTicketState: TicketState = adapter.getInitialState({});
+export const initialTicketState: TicketState = adapter.getInitialState({
+  filter: null,
+});
 
 export const ticketReducer = createReducer(
   initialTicketState,
@@ -47,7 +51,11 @@ export const ticketReducer = createReducer(
         ...state,
       }
     )
-  )
+  ),
+  on(TicketActions.setTicketFilter, (state, { filter }) => ({
+    ...state,
+    filter,
+  }))
 );
 
 export const { selectAll, selectEntities, selectIds, selectTotal } =
