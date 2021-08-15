@@ -34,7 +34,7 @@ export class TicketToolbarComponent implements OnInit, OnDestroy {
     this.form.valueChanges.subscribe((value) => {
       const filter = {};
       /**
-       * remove undefined filter key
+       * remove when filter key === undefined
        */
       Object.keys(value).forEach((key) => {
         if (value[key]) {

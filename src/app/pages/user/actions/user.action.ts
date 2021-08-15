@@ -1,7 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { User } from "@shared/interfaces/user.interface";
 
-const source = "[User Page]";
+const source = "User Page";
 
 export const loadUsers = createAction(`[${source}] Load`);
 

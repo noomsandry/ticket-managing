@@ -1,7 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { Ticket } from "@shared/interfaces/ticket.interface";
 
-const source = "[Ticket Page]";
+const source = "Ticket Page";
 
 export const loadTickets = createAction(`[${source}] Load`);
 
@@ -20,13 +20,13 @@ export const ticketCreated = createAction(
   props<{ ticket: Ticket }>()
 );
 
-export const completeTicket = createAction(
-  `[${source}] Complet`,
+export const dropTicket = createAction(
+  `[${source}] Drop`,
   props<{ ticketId: number; completed: boolean; order: number }>()
 );
 
-export const ticketComplated = createAction(
-  `[${source}] Completed`,
+export const ticketDroped = createAction(
+  `[${source}] Droped`,
   props<{ ticket: Ticket }>()
 );
 

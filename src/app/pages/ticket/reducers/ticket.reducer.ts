@@ -28,7 +28,10 @@ export const ticketReducer = createReducer(
   on(TicketActions.ticketCreated, (state, { ticket }) =>
     adapter.addOne(ticket, { ...state })
   ),
-  on(TicketActions.ticketComplated, (state, { ticket }) => {
+  on(TicketActions.ticketDroped, (state, { ticket }) => {
+    /**
+     * update ticket
+     */
     const newState = adapter.updateOne(
       {
         id: ticket.id,
@@ -41,7 +44,7 @@ export const ticketReducer = createReducer(
     );
     let entities = newState.entities;
     /**
-     * update order
+     * increment the order of tickets that are placed after the current position
      */
     entities = _.mapValues(entities, (entity) => {
       let _entity = { ...entity };

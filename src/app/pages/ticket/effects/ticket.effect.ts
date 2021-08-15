@@ -108,11 +108,11 @@ export class TicketEffects {
 
   complet$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(TicketActions.completeTicket),
+      ofType(TicketActions.dropTicket),
       mergeMap(({ ticketId, completed, order }) =>
         this.backendService.complete(ticketId, completed, order).pipe(
           map((item) => {
-            return TicketActions.ticketComplated({
+            return TicketActions.ticketDroped({
               ticket: item,
             });
           }),

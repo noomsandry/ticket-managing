@@ -47,7 +47,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
 
   onDropTicket({ ticket, column, currentIndex }) {
     this.store.dispatch(
-      TicketActions.completeTicket({
+      TicketActions.dropTicket({
         ticketId: ticket.id,
         completed: column === this.done,
         order: currentIndex,

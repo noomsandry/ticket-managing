@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 
-const source = "[App Page]";
+const source = "App Page]";
 
 export const requestError = createAction(
   `[${source}] Request error`,
