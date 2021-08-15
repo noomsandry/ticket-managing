@@ -1,16 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterModule } from "@angular/router";
+import { StoreModule } from "@ngrx/store";
 
-import { DetailsPageComponent } from './details-page.component';
+import { DetailsPageComponent } from "./details-page.component";
 
-describe('DetailsPageComponent', () => {
+describe("DetailsPageComponent", () => {
   let component: DetailsPageComponent;
   let fixture: ComponentFixture<DetailsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetailsPageComponent ]
-    })
-    .compileComponents();
+      declarations: [DetailsPageComponent],
+      imports: [StoreModule.forRoot([]), RouterModule.forRoot([])],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('DetailsPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

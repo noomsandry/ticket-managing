@@ -1,16 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterModule } from "@angular/router";
+import { StoreModule } from "@ngrx/store";
 
-import { ListPageComponent } from './list-page.component';
+import { ListPageComponent } from "./list-page.component";
 
-describe('ListPageComponent', () => {
+describe("ListPageComponent", () => {
   let component: ListPageComponent;
   let fixture: ComponentFixture<ListPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListPageComponent ]
-    })
-    .compileComponents();
+      declarations: [ListPageComponent],
+      imports: [StoreModule.forRoot([]), RouterModule.forRoot([])],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('ListPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

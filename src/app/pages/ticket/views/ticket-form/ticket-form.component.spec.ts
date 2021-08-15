@@ -1,16 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { StoreModule } from "@ngrx/store";
 
-import { TicketFormComponent } from './ticket-form.component';
+import { TicketFormComponent } from "./ticket-form.component";
 
-describe('TicketFormComponent', () => {
+describe("TicketFormComponent", () => {
   let component: TicketFormComponent;
   let fixture: ComponentFixture<TicketFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TicketFormComponent ]
-    })
-    .compileComponents();
+      declarations: [TicketFormComponent],
+      imports: [
+        StoreModule.forRoot([]),
+        RouterModule.forRoot([]),
+        ReactiveFormsModule,
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +26,7 @@ describe('TicketFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
