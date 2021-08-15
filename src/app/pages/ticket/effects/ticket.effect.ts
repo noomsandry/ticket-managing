@@ -17,7 +17,6 @@ export class TicketEffects {
       mergeMap(() => {
         return this.backendService.tickets().pipe(
           map((items) => {
-            console.log("items", items);
             if (items) {
               this.store.dispatch(AppActions.stopLoading());
               return TicketActions.ticketsLoaded({

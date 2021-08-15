@@ -1,19 +1,4 @@
-import {
-  Action,
-  ActionReducerMap,
-  createReducer,
-  MetaReducer,
-} from "@ngrx/store";
-
-/* export interface AppState {}
-export const initialAppState: AppState = {};
-
-export function reducer(state: AppState, action: Action) {
-  return appReducer(state, action);
-}
-
-export const appReducer = createReducer(initialAppState);
- */
+import { ActionReducerMap, MetaReducer } from "@ngrx/store";
 
 export interface AppState {}
 
