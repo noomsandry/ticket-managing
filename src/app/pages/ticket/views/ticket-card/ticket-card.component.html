@@ -4,10 +4,12 @@
   </button>
   <div class="card-info" *ngIf="ticket.assigneed">
     <span class="label">Responsable</span> :
-    <span class="badge" matRipple>{{ ticket.assigneed?.name }}</span>
+    <span class="badge assigneed-value" matRipple>{{
+      ticket.assigneed?.name
+    }}</span>
   </div>
   <div class="card-info">
     <span class="label">Description : </span>
-    {{ ticket.description }}
+    <span class="description-value">{{ ticket.description }}</span>
   </div>
 </div>

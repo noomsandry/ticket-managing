@@ -26,11 +26,6 @@ describe("ListPageComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("delete", () => {
-    const button = fixture.debugElement.query(By.css(".delete-btn"));
-    console.log("BBBBB", button);
-  });
-
   afterEach(() => {
     fixture.destroy();
   });

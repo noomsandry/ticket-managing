@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SharedModule } from "@app/shared/shared.module";
 
-import { PageLayoutComponent } from './page-layout.component';
+import { PageLayoutComponent } from "./page-layout.component";
 
-describe('PageLayoutComponent', () => {
+describe("PageLayoutComponent", () => {
   let component: PageLayoutComponent;
   let fixture: ComponentFixture<PageLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [PageLayoutComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('PageLayoutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
