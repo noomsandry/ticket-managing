@@ -20,6 +20,9 @@ export class TicketColumnComponent implements OnInit {
   ngOnInit(): void {}
 
   drop(event) {
+    /**
+     * update column tickets list
+     */
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data.tickets,
