@@ -1,11 +1,13 @@
 <ng-container
   *ngIf="{
-    ticket: ticket$ | async
+    ticket: ticket$ | async,
+    users: users$ | async
   } as _"
 >
   <app-ticket-form
     [title]="title"
     [ticket]="_.ticket"
+    [users]="_.users"
     (onSubmit)="update($event)"
     *ngIf="_.ticket"
   ></app-ticket-form

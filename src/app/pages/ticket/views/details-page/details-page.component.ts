@@ -2,13 +2,14 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, Subject } from "rxjs";
 import { takeUntil, tap, filter } from "rxjs/operators";
-
 import { select, Store } from "@ngrx/store";
 
 import { Ticket } from "@app/shared/interfaces/ticket.interface";
+import { User } from "@app/shared/interfaces/user.interface";
+import { UserSelectors } from "@app/pages/user/selectors";
+
 import { TicketSelectors } from "../../selectors";
 import { TicketActions } from "../../actions";
-
 @Component({
   selector: "app-details-page",
   templateUrl: "./details-page.component.html",
@@ -16,6 +17,7 @@ import { TicketActions } from "../../actions";
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
   ticket$: Observable<Ticket>;
+  users$: Observable<User[]>;
   title;
   private _unsubscribeAll: Subject<any>;
 
@@ -38,6 +40,11 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
           this.title = `Modifier le ticket #${ticket.id}`;
           this.cRef.detectChanges();
         })
+      );
+
+      this.users$ = this.store.pipe(
+        takeUntil(this._unsubscribeAll),
+        select(UserSelectors.selectUsers)
       );
     }
   }

@@ -20,6 +20,7 @@ import { UserSelectors } from "@app/pages/user/selectors";
 export class ListPageComponent implements OnInit, OnDestroy {
   public complated$: Observable<Ticket[]>;
   public uncomplated$: Observable<Ticket[]>;
+  public users$: Observable<User[]>;
   public readonly todo = "TO-DO";
   public readonly done = "DONE";
 
@@ -37,6 +38,10 @@ export class ListPageComponent implements OnInit, OnDestroy {
     this.uncomplated$ = this.store.pipe(
       takeUntil(this._unsubscribeAll),
       select(TicketSelectors.selectUnCompletedTickets)
+    );
+    this.users$ = this.store.pipe(
+      takeUntil(this._unsubscribeAll),
+      select(UserSelectors.selectUsers)
     );
   }
 
@@ -59,6 +64,10 @@ export class ListPageComponent implements OnInit, OnDestroy {
     this.store.dispatch(
       AppActions.startLoading({ message: "Suppression en cours ..." })
     );
+  }
+
+  onSetFilter(filter) {
+    this.store.dispatch(TicketActions.setTicketFilter({ filter }));
   }
 
   ngOnDestroy(): void {

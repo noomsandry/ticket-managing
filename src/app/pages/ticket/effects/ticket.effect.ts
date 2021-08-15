@@ -17,15 +17,17 @@ export class TicketEffects {
       mergeMap(() => {
         return this.backendService.tickets().pipe(
           map((items) => {
-            return TicketActions.ticketsLoaded({
-              tickets: items,
-            });
+            console.log("items", items);
+            if (items) {
+              this.store.dispatch(AppActions.stopLoading());
+              return TicketActions.ticketsLoaded({
+                tickets: items,
+              });
+            }
           }),
           catchError((errorMessage) => {
-            return of(AppActions.requestError({ errorMessage }));
-          }),
-          finalize(() => {
             this.store.dispatch(AppActions.stopLoading());
+            return of(AppActions.requestError({ errorMessage }));
           })
         );
       })

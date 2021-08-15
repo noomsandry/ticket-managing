@@ -8,12 +8,8 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Observable, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { Observable } from "rxjs";
 
-import { select, Store } from "@ngrx/store";
-
-import { UserSelectors } from "@app/pages/user/selectors";
 import { User } from "@app/shared/interfaces/user.interface";
 import { Ticket } from "@shared/interfaces/ticket.interface";
 
@@ -23,26 +19,18 @@ import { Ticket } from "@shared/interfaces/ticket.interface";
   styleUrls: ["./ticket-form.component.css"],
   encapsulation: ViewEncapsulation.None,
 })
-export class TicketFormComponent implements OnInit, OnDestroy {
+export class TicketFormComponent implements OnInit {
   @Input() title = "Nouveau Ticket";
   @Input() ticket: Ticket = <Ticket>{
     completed: false,
   };
+  @Input() users: User[] = [];
   @Output() onSubmit = new EventEmitter();
-
   form: FormGroup;
-  users$: Observable<User[]>;
-  private _unsubscribeAll: Subject<any>;
 
-  constructor(private fb: FormBuilder, private store: Store) {
-    this._unsubscribeAll = new Subject();
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.users$ = this.store.pipe(
-      takeUntil(this._unsubscribeAll),
-      select(UserSelectors.selectUsers)
-    );
     this.form = this.fb.group({
       id: [this.ticket?.id],
       completed: [this.ticket?.completed],
@@ -55,10 +43,5 @@ export class TicketFormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
-  }
-
-  ngOnDestroy(): void {
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
   }
 }

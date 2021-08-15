@@ -1,4 +1,7 @@
-<app-ticket-toolbar></app-ticket-toolbar>
+<app-ticket-toolbar
+  [users]="users$"
+  (onSetFilter)="onSetFilter($event)"
+></app-ticket-toolbar>
 <div cdkDropListGroup class="list-wrapper">
   <app-ticket-column
     title="TO-DO"

@@ -9,7 +9,7 @@
     <span>Filtre</span>
     <mat-form-field appearance="fill">
       <mat-label>Responsable</mat-label>
-      <mat-select formControlName="assigneeId">
+      <mat-select formControlName="assigneeId" ngDefaultControl>
         <mat-option [value]="user.id" *ngFor="let user of users$ | async">{{
           user.name
         }}</mat-option>

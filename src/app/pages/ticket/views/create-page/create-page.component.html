@@ -1,1 +1,10 @@
-<app-ticket-form (onSubmit)="create($event)"></app-ticket-form>
+<ng-container
+  *ngIf="{
+    users: users$ | async
+  } as _"
+>
+  <app-ticket-form
+    (onSubmit)="create($event)"
+    [users]="_.users"
+  ></app-ticket-form>
+</ng-container>

@@ -1,16 +1,31 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { select, Store } from "@ngrx/store";
+import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+
 import { TicketActions } from "../../actions";
-import * as AppActions from "@app/app.action";
+
+import { User } from "@app/shared/interfaces/user.interface";
+import { UserSelectors } from "@app/pages/user/selectors";
 @Component({
   selector: "app-create-page",
   templateUrl: "./create-page.component.html",
   styleUrls: ["./create-page.component.css"],
 })
-export class CreatePageComponent implements OnInit {
-  constructor(private store: Store) {}
+export class CreatePageComponent implements OnInit, OnDestroy {
+  users$: Observable<User[]>;
+  private _unsubscribeAll: Subject<any>;
 
-  ngOnInit(): void {}
+  constructor(private store: Store) {
+    this._unsubscribeAll = new Subject();
+  }
+
+  ngOnInit(): void {
+    this.users$ = this.store.pipe(
+      takeUntil(this._unsubscribeAll),
+      select(UserSelectors.selectUsers)
+    );
+  }
 
   create({ description, assigneeId }) {
     this.store.dispatch(
@@ -19,5 +34,10 @@ export class CreatePageComponent implements OnInit {
         assigneeId,
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
   }
 }

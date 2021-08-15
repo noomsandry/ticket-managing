@@ -1,12 +1,15 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Observable, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
-import { select, Store } from "@ngrx/store";
 
 import { User } from "@app/shared/interfaces/user.interface";
-import { UserSelectors } from "@app/pages/user/selectors";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { TicketActions } from "../../actions";
 
 @Component({
   selector: "app-ticket-toolbar",
@@ -14,11 +17,12 @@ import { TicketActions } from "../../actions";
   styleUrls: ["./ticket-toolbar.component.css"],
 })
 export class TicketToolbarComponent implements OnInit, OnDestroy {
-  public users$: Observable<User[]>;
+  @Input("users") users$: Observable<User[]>;
+  @Output() onSetFilter = new EventEmitter();
   public form: FormGroup;
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private store: Store, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -26,11 +30,6 @@ export class TicketToolbarComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       assigneeId: [],
     });
-
-    this.users$ = this.store.pipe(
-      takeUntil(this._unsubscribeAll),
-      select(UserSelectors.selectUsers)
-    );
 
     this.form.valueChanges.subscribe((value) => {
       const filter = {};
@@ -42,7 +41,7 @@ export class TicketToolbarComponent implements OnInit, OnDestroy {
           filter[key] = value[key];
         }
       });
-      this.store.dispatch(TicketActions.setTicketFilter({ filter }));
+      this.onSetFilter.emit(filter);
     });
   }
 
