@@ -1,5 +1,5 @@
 <div *ngIf="ticket">
-  <button mat-icon-button (click)="remove($event)">
+  <button mat-icon-button (click)="remove($event)" class="delete-btn">
     <mat-icon>delete</mat-icon>
   </button>
   <div class="card-info" *ngIf="ticket.assigneed">

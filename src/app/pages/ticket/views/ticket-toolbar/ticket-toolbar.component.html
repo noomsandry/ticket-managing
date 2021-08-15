@@ -15,7 +15,12 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="reset()">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="reset()"
+      [disabled]="!form.controls.assigneeId.value"
+    >
       <mat-icon>clear</mat-icon>
     </button>
   </form>
