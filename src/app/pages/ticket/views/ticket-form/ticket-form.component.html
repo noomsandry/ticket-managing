@@ -23,6 +23,7 @@
   <mat-form-field appearance="fill" fxLayout="row wrap" fxFill>
     <mat-label>Description</mat-label>
     <textarea formControlName="description" matInput></textarea>
+    <mat-error> Ce champ est obligatoire. </mat-error>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
     <a mat-raised-button [routerLink]="['/']">Annuler</a>
