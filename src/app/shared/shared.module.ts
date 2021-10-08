@@ -11,7 +11,6 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
-import { BackendService } from "./services/backend.service";
 import { LoadingComponent } from "./components/loading/loading.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
@@ -39,6 +38,6 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatSelectModule,
     MatSlideToggleModule,
   ],
-  providers: [BackendService],
+  providers: [],
 })
 export class SharedModule {}

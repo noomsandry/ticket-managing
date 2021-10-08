@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, finalize, map, mergeMap, switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 
-import { BackendService } from "@shared/services/backend.service";
+import { BackendService } from "@app/services/backend.service";
 import { TicketActions } from "@pages/ticket/actions";
 import * as AppActions from "@app/app.action";
 import { Store } from "@ngrx/store";

@@ -14,7 +14,6 @@ import { SharedModule } from "@app/shared/shared.module";
 import { TicketRoutingModule } from "./ticket-routing.module";
 import { ticketReducer } from "./reducers";
 import { TicketEffects } from "./effects/ticket.effect";
-import { TicketResolver } from "./ticket.resolver";
 import { TicketCardComponent } from "./views/ticket-card/ticket-card.component";
 import { TicketColumnComponent } from "./views/ticket-column/ticket-column.component";
 import { TicketFormComponent } from "./views/ticket-form/ticket-form.component";
@@ -42,6 +41,6 @@ import { TicketToolbarComponent } from "./views/ticket-toolbar/ticket-toolbar.co
     StoreModule.forFeature("ticket", ticketReducer.reducer),
     EffectsModule.forFeature([TicketEffects]),
   ],
-  providers: [TicketResolver],
+  providers: [],
 })
 export class TicketModule {}

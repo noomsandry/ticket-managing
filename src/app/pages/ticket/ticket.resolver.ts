@@ -3,7 +3,9 @@ import { Resolve } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { TicketActions } from "./actions";
 import * as AppActions from "@app/app.action";
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class TicketResolver implements Resolve<boolean> {
   constructor(private store: Store) {}
   resolve(r): boolean {
